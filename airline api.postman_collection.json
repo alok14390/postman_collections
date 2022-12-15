@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "52c95460-3a4f-431b-a10a-7ed3a9488afe",
+		"name": "airline api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23215189"
+	},
+	"item": [
+		{
+			"name": "read all airlines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"const a = pm.response.json();\r",
+							"var len = a.length ;\r",
+							"console.log(len)\r",
+							"\r",
+							"for( var i=0;i<len;i++)\r",
+							"{\r",
+							"if(a[i].country == \"Quatar\");\r",
+							"{\r",
+							"    var airid = a[i].id;\r",
+							"    console.log(airid)\r",
+							"    pm.environment.set(\"airid\" , airid);\r",
+							"}\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create airline data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 566767,\r\n    \"name\": \"Srilankan Airways\",\r\n    \"country\": \"Sri Lanka\",\r\n\"logo\":\"https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png\",\r\n    \"slogan\": \"From Sri Lanka\",\r\n    \"head_quaters\": \"Katunayake, Sri Lanka\",\r\n    \"website\": \"www.srilankaairways.com\",\r\n    \"established\": \"1990\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read airline by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/airlines/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"airlines",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create passenger using correct passenger data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/v1/passenger",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
